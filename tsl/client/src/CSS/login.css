@@ -1,0 +1,137 @@
+.fade-in {
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    -moz-animation: fadeIn ease 1s;
+    -o-animation: fadeIn ease 1s;
+    -ms-animation: fadeIn ease 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#pass {
+    padding: 15px 0 0 0;
+    /* 2 animations: shake, and glow red */
+    animation-name: shake, glow-red;
+    animation-duration: 0.7s, 0.35s;
+    animation-iteration-count: 1, 2;
+}
+
+@keyframes shake {
+    0%,
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(8px);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-8px);
+    }
+}
+
+@keyframes glow-red {
+    50% {
+        border-color: indianred;
+    }
+}
+
+#logo {
+    max-height: 100px;
+    min-height: 90px;
+    position: sticky;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1vh;
+}
+
+#signin {
+    text-align: center;
+    margin: auto;
+    max-width: 40px;
+    min-width: 20vw;
+    color: black;
+}
+
+#signinbtn {
+    margin-top: 8%;
+}
+
+label {
+    padding-top: 25px;
+}
+
+#inputs {
+    display: block;
+    outline: none;
+    border: none !important;
+}
+
+.form-group {
+    text-align: left;
+    max-width: 40px;
+    min-width: 20vw;
+    color: black;
+    font-weight: 200;
+    margin: auto;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 40px 20px 45px 20px;
+    border-radius: 20px;
+    overflow-y: hidden;
+}
+
+.App-header {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
