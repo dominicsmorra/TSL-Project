@@ -10,6 +10,7 @@ from .models import CustomUser, Post
 from .admin import CustomUser
 
 
+# Tests to create users where one has valid credentials while the other two don't
 class CreateUserTestCase(APITestCase):
 
     def test_register_good(self):
@@ -28,6 +29,7 @@ class CreateUserTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
    
+# Tests to create a wall post
 class CreatePostTestCase(APITestCase):
 
     def test_post_create(self):
@@ -35,14 +37,14 @@ class CreatePostTestCase(APITestCase):
         response = self.client.post('/api/post/create/', data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-
+# Tests to retrieve the wall posts
 class RetrievePostTestCase(APITestCase):
 
     def test_post_retrieve(self):
         response = self.client.get('/api/post/list/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-
+# Tests if a user can login with good credentials and gets rejected with bad ones
 class LoginUserTestCase(APITestCase):
 
     def setUp(self):
@@ -58,7 +60,7 @@ class LoginUserTestCase(APITestCase):
         response = self.client.post('/api/token/obtain/', data)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-
+# Tests if a user can be created then logged in with
 class CreateUserThenLoginTestCase(APITestCase):
 
     def test_user(self):
@@ -69,6 +71,7 @@ class CreateUserThenLoginTestCase(APITestCase):
         response = self.client.post('/api/token/obtain/', data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+# Tests if a user can login then logout using their JWT refresh token
 class LoginUserThenLogoutTestCase(APITestCase):
 
     def setUp(self):

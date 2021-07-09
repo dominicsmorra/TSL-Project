@@ -37,7 +37,7 @@ class PostDeleteView(DestroyAPIView):
             return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND) 
 
 
-class ObtainTokenPairWithColorView(TokenObtainPairView):
+class ObtainTokenView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
 
