@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import axiosInstance from "../api/axiosAPI";
+import background from "../Images/NYC.jpg";
+import "bootstrap/dist/css/bootstrap.min.css";
+import logo from "../Images/silver-logic.png";
+import { Link, Redirect } from 'react-router-dom';
+import { setUser, getUser } from '../api/userInfo'
+import "../CSS/login.css";
+
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {username: "", password: ""};
+        this.state = {username: "", password: "", authed: false};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,6 +20,12 @@ class Login extends Component {
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
+    }
+
+    componentDidMount(){
+        this.setState({
+            authed: false
+        })
     }
 
     handleSubmitWThen(event){
@@ -42,6 +55,8 @@ class Login extends Component {
             console.log(response.data.access)
             localStorage.setItem('access_token', response.data.access);
             localStorage.setItem('refresh_token', response.data.refresh);
+            localStorage.setItem('username', this.state.username)
+            this.setState({authed: true})
             return response;
         } catch (error) {
             throw error;
@@ -49,22 +64,38 @@ class Login extends Component {
     }
 
     render() {
+        if(!this.state.authed){
         return (
-            <div>
-                Login
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Username:
-                        <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
-                    </label>
-                    <label>
-                        Password:
-                        <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-                    </label>
-                    <input type="submit" value="Submit"/>
-                </form>
+            <form className="" onSubmit={this.handleSubmit}>
+
+            <h3 className="row justify-content-md-center">Log in</h3>
+
+            <div className="form-group">
+                <label>Username</label>
+                <input onChange={this.handleChange} type="username" name="username" className="form-control" placeholder="Enter username" />
             </div>
-        )
+
+            <div className="form-group">
+                <label>Password</label>
+                <input onChange={this.handleChange} type="password" name="password" className="form-control" placeholder="Enter password" />
+            </div>
+
+            <div className="form-group">
+             <button type="submit" className="btn btn-primary">Sign in</button>   
+            </div>
+            <div className="form-group">
+            <Link to="/signup">
+            <button className="btn btn-primary">Create Account</button>   
+            </Link>
+            <Link to="/wall">
+            <button className="btn btn-primary">Continue As Guest</button>   
+            </Link>
+            </div>
+        </form>
+        )}
+        else {
+            return(<Redirect to='/wall' />)
+        }
     }
 }
 export default Login;

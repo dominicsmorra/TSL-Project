@@ -2,8 +2,27 @@ from rest_framework import status, permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
+from rest_framework.generics import (
+    ListAPIView,
+    RetrieveAPIView,
+    CreateAPIView,
+    DestroyAPIView,
+    UpdateAPIView
+)
 from rest_framework_simplejwt.tokens import RefreshToken
-from .serializers import MyTokenObtainPairSerializer, CustomUserSerializer
+from .serializers import MyTokenObtainPairSerializer, CustomUserSerializer, PostSerializer
+from .models import Post
+
+
+class PostListView(ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = (permissions.AllowAny, )
+
+class PostCreateView(CreateAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    permission_classes = (permissions.AllowAny, )
 
 
 class ObtainTokenPairWithColorView(TokenObtainPairView):
