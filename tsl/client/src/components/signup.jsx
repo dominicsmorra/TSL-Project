@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axiosInstance from "../api/axiosAPI";
-import{ init } from 'emailjs-com';
+
 import emailjs from 'emailjs-com';
 import { Redirect } from 'react-router-dom'
 
-init("user_hDVymPfuJzEjHaEjSGTt4");
 
 
 class Signup extends Component{
@@ -55,27 +54,31 @@ class Signup extends Component{
         if(!this.state.userCreated){
             return (
                 <div>
-                    Signup
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Username:
-                            <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
-                            { this.state.errors.username ? this.state.errors.username : null}
-                        </label>
-                        <label>
-                            Email:
-                            <input name="email" type="email" value={this.state.email} onChange={this.handleChange}/>
-                            { this.state.errors.email ? this.state.errors.email : null}
-                        </label>
-                        <label>
-                            Password:
-                            <input name="password" type="password" value={this.state.password} onChange={this.handleChange}/>
-                            { this.state.errors.password ? this.state.errors.password : null}
-                        </label>
-                        <input type="submit" value="Submit"/>
-                    </form>
+                
+                <form onSubmit={this.handleSubmit} style={{'marginLeft': '25%', 'marginRight': '25%', 'marginTop': '17%'}}>
+                <p style={{'marginLeft': '5%', 'marginTop': '6%'}} className="h1">Create A User</p>
+                <div class="input-group mb-3">
+                <input type="text" onChange={this.handleChange} name='username' class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
+                { this.state.errors.username ? this.state.errors.username : null}
+                </div>
+
+                <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input type="text" onChange={this.handleChange} name='email' type='email' class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"/>
+                { this.state.errors.email ? this.state.errors.email : null}
+                </div>
+
+
+                <div class="input-group mb-3">
+                
+                <input type="text" onChange={this.handleChange} type='password' name='password'  class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"/>
+                { this.state.errors.password ? this.state.errors.password : null}
+                </div>
+                <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
                 </div>
             )
+
         } else {
            return ( <Redirect to='/login' /> )
         }
