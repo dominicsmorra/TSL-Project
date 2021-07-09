@@ -65,7 +65,7 @@ class Signup extends Component{
                 </div>
                 </nav>
                 <form onSubmit={this.handleSubmit} style={{'marginLeft': '25%', 'marginRight': '25%', 'marginTop': '17%'}}>
-                <p style={{'marginLeft': '5%', 'marginTop': '6%'}} className="h1">Create A User</p>
+                <p style={{'marginLeft': '5%', 'marginTop': '6%'}} className="h1">Create An Account</p>
                 <div class="input-group mb-3">
                 <input type="text" onChange={this.handleChange} name='username' class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
                 { this.state.errors.username ? this.state.errors.username : null}

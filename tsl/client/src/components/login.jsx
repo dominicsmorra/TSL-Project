@@ -68,7 +68,7 @@ class Login extends Component {
             <div>
             <nav className="navbar navbar-light bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand">Navbar</a>
+                <a className="navbar-brand">The Wall Awaits...</a>
                 <form className="d-flex">
                 <Link to="/signup">
                 <button className="btn btn-outline-success">Create Account</button>   

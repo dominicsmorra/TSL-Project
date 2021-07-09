@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import Footer from './footer'
 import { Form, TextArea } from 'semantic-ui-react'
 import axiosInstance from '../api/axiosAPI'
 
@@ -35,16 +34,6 @@ class Wall extends Component {
         
     }   
 
-    // async componentDidUpdate() {
-    //     let posts = await axios.get(
-    //         `http://localhost:8000/api/post/list`
-    //       );
-    //     console.log('Posts' + posts.data)
-    //     posts = posts.data
-    //     this.setState({ posts: posts, user: localStorage.getItem('username') })
-        
-        
-    // }
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
@@ -58,6 +47,12 @@ class Wall extends Component {
                entry: this.state.entry
             });
             this.setState({ entry: '' })
+            let posts = await axios.get(
+                `http://localhost:8000/api/post/list`
+              );
+            console.log('Posts' + posts.data)
+            posts = posts.data
+            this.setState({ posts: posts })
         } catch (error) {
             console.log(error.stack);
             this.setState({

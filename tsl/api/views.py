@@ -15,7 +15,6 @@ from .models import Post
 
 
 class PostListView(ListAPIView):
-    print("Hello List")
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (permissions.AllowAny, )
@@ -25,6 +24,18 @@ class PostCreateView(CreateAPIView):
     serializer_class = PostSerializer
     permission_classes = (permissions.AllowAny, )
 
+ 
+class PostDeleteView(DestroyAPIView):
+    permission_classes = (permissions.AllowAny, )
+    def get(self, request, pk, format='json'):
+        post = Post.objects.get(pk=pk)
+        serializer = PostSerializer(data=request.data)
+        if post:
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND) 
+
 
 class ObtainTokenPairWithColorView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
@@ -33,15 +44,12 @@ class ObtainTokenPairWithColorView(TokenObtainPairView):
 class CustomUserCreate(APIView):
     permission_classes = (permissions.AllowAny,)
     authentication_classes = ()
-    print("Hello")
-
     def post(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             if user:
                 json = serializer.data
-                print('Hello2')
                 return Response(json, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
