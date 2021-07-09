@@ -12,6 +12,7 @@ python manage.py runserver
 ```
 cd tsl
 cd client
+npm install
 npm start
 ```
 ## To run the tests (From the command line terminal within the project directory)
