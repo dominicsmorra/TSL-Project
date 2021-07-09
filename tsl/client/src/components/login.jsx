@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axiosInstance from "../api/axiosAPI";
-import background from "../Images/NYC.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
-import logo from "../Images/silver-logic.png";
 import { Link, Redirect } from 'react-router-dom';
 import "../CSS/login.css";
 
