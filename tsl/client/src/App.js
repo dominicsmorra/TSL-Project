@@ -18,6 +18,8 @@ class App extends Component {
                       <Route exact path={"/signup"} component={Signup}/>
                       <Route exact path={"/wall"} component={Wall}/>
                       <Route exact path={"/logout"} component={Logout}/>
+                      <Route exact path={"/"} component={Login}/>
+
                       <Route path={"/"} render={() => <div>Wrong URL</div>}/>
 
                   </Switch>

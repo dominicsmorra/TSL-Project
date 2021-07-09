@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import Footer from './footer'
 import { Form, TextArea } from 'semantic-ui-react'
-import { getUser } from '../api/userInfo'
 import axiosInstance from '../api/axiosAPI'
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -36,16 +35,16 @@ class Wall extends Component {
         
     }   
 
-    async componentDidUpdate() {
-        let posts = await axios.get(
-            `http://localhost:8000/api/post/list`
-          );
-        console.log('Posts' + posts.data)
-        posts = posts.data
-        this.setState({ posts: posts, user: localStorage.getItem('username') })
+    // async componentDidUpdate() {
+    //     let posts = await axios.get(
+    //         `http://localhost:8000/api/post/list`
+    //       );
+    //     console.log('Posts' + posts.data)
+    //     posts = posts.data
+    //     this.setState({ posts: posts, user: localStorage.getItem('username') })
         
         
-    }
+    // }
 
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
@@ -71,6 +70,7 @@ class Wall extends Component {
     render() { 
         const posts = [...this.state.posts]
         console.log(localStorage)
+        console.log(this.state.user)
         return ( <div>
             <nav className="navbar navbar-light bg-light">
             <div className="container-fluid">
@@ -105,7 +105,7 @@ class Wall extends Component {
                 <label htmlFor="exampleFormControlTextarea1" className="form-label">Write A Post (Logged In Users Only)</label>
                 <textarea disabled={this.state.user === 'guest'} onChange={this.handleChange} name='entry' className="form-control" id="exampleFormControlTextarea1" rows="25" value={this.state.entry}></textarea>
                 { this.state.errors.entry ? this.state.errors.entry : null}
-                <button className="btn btn-primary">Post</button>               
+                <button disabled={this.state.user === 'guest'}  className="btn btn-primary">Post</button>               
             </form>
             </div>
             </div>

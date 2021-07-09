@@ -4,7 +4,6 @@ import background from "../Images/NYC.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "../Images/silver-logic.png";
 import { Link, Redirect } from 'react-router-dom';
-import { setUser, getUser } from '../api/userInfo'
 import "../CSS/login.css";
 
 
@@ -66,32 +65,36 @@ class Login extends Component {
     render() {
         if(!this.state.authed){
         return (
-            <form className="" onSubmit={this.handleSubmit}>
-
-            <h3 className="row justify-content-md-center">Log in</h3>
-
-            <div className="form-group">
-                <label>Username</label>
-                <input onChange={this.handleChange} type="username" name="username" className="form-control" placeholder="Enter username" />
+            <div>
+            <nav className="navbar navbar-light bg-light">
+            <div className="container-fluid">
+                <a className="navbar-brand">Navbar</a>
+                <form className="d-flex">
+                <Link to="/signup">
+                <button className="btn btn-outline-success">Create Account</button>   
+                </Link>
+                <Link to="/wall">
+                <button className="btn btn-outline-success">Continue As Guest</button>   
+                </Link>                </form>
             </div>
+            </nav>
+            <h1 class="display-1">The Wall App</h1>
 
-            <div className="form-group">
-                <label>Password</label>
-                <input onChange={this.handleChange} type="password" name="password" className="form-control" placeholder="Enter password" />
-            </div>
+            <form onSubmit={this.handleSubmit} style={{'marginLeft': '25%', 'marginRight': '25%', 'marginTop': '17%'}}>
+                <p style={{'marginLeft': '5%', 'marginTop': '6%'}} className="h1">Login</p>
+                <div class="input-group mb-3">
+                <input type="text" onChange={this.handleChange} name='username' class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1"/>
+               
+                </div>
 
-            <div className="form-group">
-             <button type="submit" className="btn btn-primary">Sign in</button>   
+                <div class="input-group mb-3">
+                
+                <input type="text" onChange={this.handleChange} type='password' name='password'  class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                
             </div>
-            <div className="form-group">
-            <Link to="/signup">
-            <button className="btn btn-primary">Create Account</button>   
-            </Link>
-            <Link to="/wall">
-            <button className="btn btn-primary">Continue As Guest</button>   
-            </Link>
-            </div>
-        </form>
         )}
         else {
             return(<Redirect to='/wall' />)

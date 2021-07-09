@@ -15,6 +15,7 @@ from .models import Post
 
 
 class PostListView(ListAPIView):
+    print("Hello List")
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (permissions.AllowAny, )

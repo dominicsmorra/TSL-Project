@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axiosInstance from "../api/axiosAPI";
-
 import emailjs from 'emailjs-com';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 
 
@@ -54,7 +53,17 @@ class Signup extends Component{
         if(!this.state.userCreated){
             return (
                 <div>
-                
+                <nav className="navbar navbar-light bg-light">
+                <div className="container-fluid">
+                    <a className="navbar-brand">The Wall Awaits...</a>
+                    <form className="d-flex">
+                    
+                     <Link to='/login' >
+                    <button className="btn btn-outline-success">Login</button>
+                    </Link>
+                    </form>
+                </div>
+                </nav>
                 <form onSubmit={this.handleSubmit} style={{'marginLeft': '25%', 'marginRight': '25%', 'marginTop': '17%'}}>
                 <p style={{'marginLeft': '5%', 'marginTop': '6%'}} className="h1">Create A User</p>
                 <div class="input-group mb-3">
